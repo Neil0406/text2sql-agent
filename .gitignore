@@ -1,0 +1,36 @@
+# 環境變數（含 API Key，絕對不能上傳）
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+
+# 虛擬環境
+.venv/
+venv/
+env/
+text2sql-agent-env/
+
+# 資料檔（體積大，需另行下載）
+data/SuperMarket Analysis.csv
+data/supermarket.db
+data/charts/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# setup.sh 產生的備份
+.env.bak
+*.bak
