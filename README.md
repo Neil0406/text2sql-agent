@@ -70,7 +70,7 @@
 
 ## 系統需求
 
-- **Python 3.11+**（3.8 不相容 langchain>=0.3.0）
+- **Python 3.11+**
 - macOS 或 Linux
 - 至少 6 GB 可用記憶體（供 Ollama 執行 Gemma 4 E4B）
 
