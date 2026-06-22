@@ -29,6 +29,9 @@ def tmp_db(tmp_path):
 
 
 class TestSafeQueries:
+    """
+    SELECT / WHERE / GROUP BY / 結尾分號 → 應通過
+    """
     def test_simple_select(self, tmp_db):
         ok, err = validate_sql("SELECT * FROM supermarket_sales", tmp_db)
         assert ok, err
@@ -51,6 +54,9 @@ class TestSafeQueries:
 
 
 class TestDangerousQueries:
+    """
+    INSERT / DELETE / DROP / UPDATE / 多語句 / 空字串 → 應被阻擋
+    """
     def test_insert_blocked(self, tmp_db):
         ok, err = validate_sql(
             "INSERT INTO supermarket_sales VALUES ('B', 1.0, '2019-01-01')", tmp_db
@@ -82,6 +88,9 @@ class TestDangerousQueries:
 
 
 class TestSyntaxErrors:
+    """
+    查詢不存在的欄位 → 應回傳錯誤
+    """
     def test_bad_column(self, tmp_db):
         ok, err = validate_sql(
             "SELECT nonexistent_column FROM supermarket_sales", tmp_db

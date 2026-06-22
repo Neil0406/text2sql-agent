@@ -18,6 +18,9 @@ def _state(user_input="", results=None, intent=None, error=None):
 
 
 class TestVerbalRoute:
+    """
+    有錯誤、空結果、單一數值 → 應回傳 verbal
+    """
     def test_error_returns_verbal(self):
         r = route_response(_state(results=[{"col": 1}], error="some_error"))
         assert r["response_format"] == "verbal"
@@ -32,6 +35,9 @@ class TestVerbalRoute:
 
 
 class TestTableRoute:
+    """
+    含「列出」關鍵字、intent 為 table → 應回傳 table
+    """
     def test_list_keyword_returns_table(self):
         results = [{"Branch": "Alex", "Sales": 100, "Date": "2019-01-01"} for _ in range(5)]
         r = route_response(_state(user_input="列出所有分店銷售", results=results))
@@ -47,6 +53,9 @@ class TestTableRoute:
 
 
 class TestChartRoute:
+    """
+    含比較／佔比／trend／pie 關鍵字 → 應回傳 chart，並對應正確的 chart_type（line / pie / bar）
+    """
     def test_chart_keyword_zh_returns_chart(self):
         results = [{"product": f"P{i}", "sales": i * 100.0} for i in range(6)]
         r = route_response(_state(user_input="比較各產品銷售佔比", results=results))

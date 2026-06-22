@@ -10,6 +10,10 @@ from src.agent.nodes.text2sql import _extract_sql
 
 
 class TestExtractSQL:
+    """
+    ```sql``` 區塊 / 大寫 SQL 標記 / 無標記但含 SELECT 的區塊 / 純文字裸 SELECT /
+    結尾分號處理 / 無法識別時 fallback 回傳原始文字
+    """
     def test_sql_code_block(self):
         text = "Here is the query:\n```sql\nSELECT * FROM sales\n```"
         assert _extract_sql(text) == "SELECT * FROM sales"
