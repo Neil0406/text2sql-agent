@@ -17,9 +17,9 @@ env/
 text2sql-agent-env/
 
 # 資料檔（體積大，需另行下載）
-data/SuperMarket Analysis.csv
-data/supermarket.db
-data/charts/
+*SuperMarket Analysis.csv*
+*supermarket.db
+
 
 # Jupyter
 .ipynb_checkpoints/
