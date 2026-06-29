@@ -63,7 +63,7 @@ with st.sidebar:
 
     st.divider()
     st.markdown("**DB Status**")
-    db_path = os.getenv("DB_PATH", "data/supermarket.db")
+    db_path = os.getenv("DB_PATH") or str(ROOT / "data" / "supermarket.db")
     csv_path = str(ROOT / "data" / "SuperMarket Analysis.csv")
 
     if not os.path.exists(db_path):

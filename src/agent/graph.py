@@ -19,6 +19,7 @@ User Input
                                   └─► END
 """
 import os
+from pathlib import Path
 from typing import Literal
 
 from langgraph.graph import END, StateGraph
@@ -37,7 +38,8 @@ from src.db.schema import get_schema_info
 # ── Schema Fetcher node (lightweight — no LLM call) ──────────────────────────
 def schema_fetcher_node(state: AgentState) -> dict:
     """Read the DB schema and inject it into state for the Text2SQL node."""
-    db_path = os.getenv("DB_PATH", "data/supermarket.db")
+    _root = Path(__file__).parent.parent.parent
+    db_path = os.getenv("DB_PATH") or str(_root / "data" / "supermarket.db")
     schema = get_schema_info(db_path, include_samples=True, sample_rows=2)
     return {"schema_info": schema}
 

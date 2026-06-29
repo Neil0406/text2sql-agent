@@ -64,7 +64,7 @@ def _ascii_table(results: list[dict]) -> str:
 
 
 def _ensure_db() -> bool:
-    db_path = os.getenv("DB_PATH", "data/supermarket.db")
+    db_path = os.getenv("DB_PATH") or str(ROOT / "data" / "supermarket.db")
     csv_path = str(ROOT / "data" / "SuperMarket Analysis.csv")
     if os.path.exists(db_path):
         return True

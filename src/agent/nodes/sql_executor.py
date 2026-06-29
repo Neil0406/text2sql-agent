@@ -21,6 +21,7 @@ Safety measures:
 """
 import os
 import sqlite3
+from pathlib import Path
 from typing import Optional
 
 from src.cache.query_cache import QueryCache
@@ -69,7 +70,8 @@ def execute_sql(sql: str, db_path: str) -> tuple[list[dict], Optional[str]]:
 
 def sql_executor_node(state: dict) -> dict:
     """LangGraph node — SQL Executor."""
-    db_path = os.getenv("DB_PATH", "data/supermarket.db")
+    _root = Path(__file__).parent.parent.parent.parent
+    db_path = os.getenv("DB_PATH") or str(_root / "data" / "supermarket.db")
     sql = state.get("sql_query", "")
 
     if not sql:
